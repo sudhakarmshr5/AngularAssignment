@@ -1,0 +1,96 @@
+
+<div class="x_content">
+  <form class="form-horizontal form-label-left" [formGroup]="userForm" (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <div class="panel-title">
+          Register :
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+          
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <input type="text" id="inputFirstName" class="form-control input-sm" formControlName="firstName"
+                placeholder="First Name">
+                <div *ngIf="userForm.get('firstName').invalid && showError" >
+              <div *ngIf="userForm.get('firstName').errors.required " class="form-row text-danger">
+                Please Enter First Name
+              </div>
+              <div *ngIf="userForm.get('firstName').errors.minLength" class="form-row text-danger">
+                Please Enter minimum 5 characters 
+              </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <input type="text" id="inputLastName" class="form-control input-sm" formControlName="lastName"
+                placeholder="Last Name">
+              <div *ngIf="f.submitted &&  userForm.get('lastName').invalid && userForm.get('lastName').errors.required && showError " class="form-row text-danger">
+                Please Enter Last Name
+              </div>
+              <div *ngIf="f.submitted &&  userForm.get('lastName').invalid && userForm.get('lastName').errors.minLength && showError" class="form-row text-danger">
+                Please Enter minimum 5 characters 
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">E-Mail</label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <input type="text" id="inputEmail" class="form-control input-sm" formControlName="email"
+                placeholder="E-Mail">
+              <div *ngIf="f.submitted &&  userForm.get('email').invalid && showError" class="form-row text-danger">
+                Please Enter Email
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Phone Number</label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <input type="text" id="inputPhoneNumber" class="form-control input-sm"
+                formControlName="phoneNumber" placeholder="Phone Number">
+              <div *ngIf="f.submitted &&  userForm.get('phoneNumber').invalid && showError"
+                class="form-row text-danger">
+                Please Enter Valid Phone Number
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Country</label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <ng-select bindLabel="country.name" formControlName="country" class="form-control">
+                <ng-option *ngFor="let country of countryList" [value]="country.name">
+                  {{country.name}}
+                </ng-option>
+              </ng-select>
+              <div *ngIf="f.submitted &&  userForm.get('country').invalid && showError" class="form-row text-danger">
+                Please Select a Country
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-footer-div">
+      <button type="submit" class="btn btn-primary pull-right" [disabled]="loading">
+        Save
+      </button>
+
+    </div>
+
+  </form>
+</div>

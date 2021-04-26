@@ -1,0 +1,55 @@
+<!-- <app-admin-loader [loading]="loading"></app-admin-loader> -->
+<div class="x_content">
+    <form class="form-horizontal form-label-left" [formGroup]="anagramForm" (ngSubmit)="onSubmit()" #f="ngForm">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    Anagram Tester :
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">First String</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input type="text" id="inputFirstString" class="form-control input-sm"
+                                formControlName="firstString" placeholder="First Name">
+                            <div *ngIf="f.submitted &&  anagramForm.get('firstString').invalid && showError"
+                                    class="form-row text-danger">
+                                    Please Enter Second String
+                                </div>
+                                
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Second String</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input type="text" id="inputSecondString" class="form-control input-sm"
+                                formControlName="secondString" placeholder="Last Name">
+                            <div *ngIf="f.submitted &&  anagramForm.get('secondString').invalid && showError"
+                                    class="form-row text-danger">
+                                    Please Enter Second String
+                                </div>
+                                
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-footer-div">
+            <button type="submit" class="btn btn-primary pull-right">
+                Test
+            </button>
+
+        </div>
+
+    </form>
+</div>
