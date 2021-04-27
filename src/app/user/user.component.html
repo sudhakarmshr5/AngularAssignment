@@ -18,14 +18,14 @@
             <div class="col-md-9 col-sm-9 col-xs-12">
               <input type="text" id="inputFirstName" class="form-control input-sm" formControlName="firstName"
                 placeholder="First Name">
-                <div *ngIf="userForm.get('firstName').invalid && showError" >
-              <div *ngIf="userForm.get('firstName').errors.required " class="form-row text-danger">
+                
+              <div *ngIf="f.submitted && userForm.get('firstName').invalid && userForm.get('firstName').errors.required && showError" class="form-row text-danger">
                 Please Enter First Name
               </div>
-              <div *ngIf="userForm.get('firstName').errors.minLength" class="form-row text-danger">
+              <div *ngIf="f.submitted &&  userForm.get('firstName').errors.minLength ||  userForm.get('lastName').touched && showError" class="form-row text-danger">
                 Please Enter minimum 5 characters 
               </div>
-              </div>
+              
             </div>
           </div>
 
@@ -37,7 +37,7 @@
               <div *ngIf="f.submitted &&  userForm.get('lastName').invalid && userForm.get('lastName').errors.required && showError " class="form-row text-danger">
                 Please Enter Last Name
               </div>
-              <div *ngIf="f.submitted &&  userForm.get('lastName').invalid && userForm.get('lastName').errors.minLength && showError" class="form-row text-danger">
+              <div *ngIf="f.submitted &&  userForm.get('lastName').errors.minLength || userForm.get('lastName').touched && showError" class="form-row text-danger">
                 Please Enter minimum 5 characters 
               </div>
             </div>
