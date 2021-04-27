@@ -54,7 +54,7 @@ export class TemperatureComponent implements OnInit {
             return this.temperatureData;
         }
         else {
-            return 'Temperature should be integer';
+            this.toastr.error('Temperature should be integer');
         }
     }
 

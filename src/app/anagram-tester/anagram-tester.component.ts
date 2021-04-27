@@ -45,9 +45,9 @@ export class AnagramTesterComponent implements OnInit {
     }
 
     validateForm(values){
-        if (!values.firstName) {
+        if (!values.firstString) {
             return false;
-          } else if (!values.lastName) {
+          } else if (!values.secondString) {
             return false;
           } 
           return true;
