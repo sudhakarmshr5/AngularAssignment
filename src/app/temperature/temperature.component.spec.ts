@@ -38,20 +38,5 @@ describe('TemperatureComponent', () => {
     expect(insert.hasError('required')).toBeTruthy();
     expect(insert.pristine).toBeTruthy();
   });
-  it('should have throw error when value is set to more than 150', () => {
-    const insert = component.tempForm.controls.temperature;
-    insert.setValue(200);
-    expect(insert.valid).toBeFalsy();
-    expect(insert.hasError('required')).toBeTruthy();
-    expect(insert.hasError('max')).toBeTruthy();
-    expect(insert.pristine).toBeTruthy();
-  });
-  it('should have throw error when value is set to less than 1', () => {
-    const insert = component.tempForm.controls.temperature;
-    insert.setValue(0);
-    expect(insert.valid).toBeFalsy();
-    expect(insert.hasError('required')).toBeTruthy();
-    expect(insert.hasError('min')).toBeTruthy();
-    expect(insert.pristine).toBeTruthy();
-  });
+  
 });
