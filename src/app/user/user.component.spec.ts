@@ -2,19 +2,26 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ToastrService } from 'ngx-toastr';
 import { UserComponent } from './user.component';
 
-describe('SignupComponent', () => {
+describe('UserComponent', () => {
   let component: UserComponent;
   let fixture: ComponentFixture<UserComponent>;
+  let mockToastrService;
 
   beforeEach(async(() => {
+    mockToastrService = jasmine.createSpyObj('mockToastrService', ['success','error']);
+
     TestBed.configureTestingModule({
       declarations: [UserComponent],
-      imports: [ReactiveFormsModule]
+      providers: [ToastrService],
+      imports: [ReactiveFormsModule,RouterTestingModule]
 
     })
       .compileComponents();
+
+      TestBed.overrideProvider(ToastrService, { useValue: mockToastrService });
   }));
 
   beforeEach(() => {

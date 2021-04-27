@@ -18,7 +18,7 @@ export class TemperatureComponent implements OnInit {
     mode: number;
     temperatureData: any;
 
-    constructor(private route: ActivatedRoute, private toastr: ToastrService,
+    constructor( private toastr: ToastrService,
         private formBuilder: FormBuilder,
         private router: Router) {
         this.initializeFormControl();
