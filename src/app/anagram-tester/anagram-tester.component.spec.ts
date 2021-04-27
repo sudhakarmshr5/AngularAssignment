@@ -41,8 +41,8 @@ describe('AnagramTesterComponent', () => {
     expect(firstString.pristine).toBeTruthy();
   });
 
-  it('should be throw pattern error after word1 field has entered numerical input values', () => {
-    const word1 = component.anagramForm.controls.word1;
+  it('should be throw pattern error after firstString field has entered numerical input values', () => {
+    const word1 = component.anagramForm.controls.firstString;
     word1.setValue('abc1');
     expect(word1.hasError('pattern')).toBeTruthy();
     expect(word1.valid).toBeFalsy();
@@ -63,13 +63,13 @@ describe('AnagramTesterComponent', () => {
   });
   
   it('should pass anagram check', () => {
-    component.anagramForm.controls.word1.setValue('cellar');
-    component.anagramForm.controls.word2.setValue('recall');
+    component.anagramForm.controls.firstString.setValue('cellar');
+    component.anagramForm.controls.secondString.setValue('recall');
     expect(component.anagramForm.valid).toBeTruthy();
   });
   it('should fail anagram check', () => {
-    component.anagramForm.controls.word1.setValue('arm');
-    component.anagramForm.controls.word2.setValue('elbow');
+    component.anagramForm.controls.firstString.setValue('arm');
+    component.anagramForm.controls.secondString.setValue('elbow');
     expect(component.anagramForm.valid).toBeTruthy();
   });
   
