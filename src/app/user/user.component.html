@@ -22,7 +22,7 @@
               <div *ngIf="f.submitted && userForm.get('firstName').invalid && userForm.get('firstName').errors.required && showError" class="form-row text-danger">
                 Please Enter First Name
               </div>
-              <div *ngIf="f.submitted &&  userForm.get('firstName').errors.minLength ||  userForm.get('lastName').touched && showError" class="form-row text-danger">
+              <div *ngIf="f.submitted &&  userForm.get('firstName').errors.minLength &&  userForm.get('lastName').touched && showError" class="form-row text-danger">
                 Please Enter minimum 5 characters 
               </div>
               
@@ -37,7 +37,7 @@
               <div *ngIf="f.submitted &&  userForm.get('lastName').invalid && userForm.get('lastName').errors.required && showError " class="form-row text-danger">
                 Please Enter Last Name
               </div>
-              <div *ngIf="f.submitted &&  userForm.get('lastName').errors.minLength || userForm.get('lastName').touched && showError" class="form-row text-danger">
+              <div *ngIf="f.submitted &&  userForm.get('lastName').errors.minLength && userForm.get('lastName').touched && showError" class="form-row text-danger">
                 Please Enter minimum 5 characters 
               </div>
             </div>

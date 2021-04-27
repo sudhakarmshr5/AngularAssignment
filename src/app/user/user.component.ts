@@ -82,7 +82,7 @@ import { ToastrService } from 'ngx-toastr';
             this.resetFormControl();
             this.toastr.success('User Registered successfully');
             this.loading = false;
-
+            this.router.navigate(['/']);
         }
     }
   
