@@ -66,7 +66,7 @@ export class TemperatureComponent implements OnInit {
 
     calculateMode(): number {
         return this.temperatureData.reduce(function(counts,key){
-            var curCount = (counts[key+''] || 0) + 1;
+            let curCount = (counts[key+''] || 0) + 1;
             counts[key+''] = curCount;
             if (curCount > counts.max) { counts.max = curCount; counts.mode = key; }
             return counts;

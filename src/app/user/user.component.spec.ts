@@ -128,5 +128,5 @@ describe('UserComponent', () => {
     expect(country.hasError('required')).toBeFalsy();
     expect(country.valid).toBeTruthy();
   });
-  
+
 });
