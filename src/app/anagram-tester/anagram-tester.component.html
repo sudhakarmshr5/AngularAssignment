@@ -18,11 +18,9 @@
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <input type="text" id="inputFirstString" class="form-control input-sm"
                                 formControlName="firstString" placeholder="First Name">
-                            <div *ngIf="f.submitted &&  anagramForm.get('firstString').invalid && showError"
-                                    class="form-row text-danger">
-                                    Please Enter Second String
-                                </div>
-                                
+                            <div *ngIf="anagramForm.get('firstString').errors?.required && anagramForm.get('firstString').touched" class="form-row text-danger">
+                                Please Enter First String
+                            </div>
                         </div>
                     </div>
 
@@ -31,11 +29,10 @@
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <input type="text" id="inputSecondString" class="form-control input-sm"
                                 formControlName="secondString" placeholder="Last Name">
-                            <div *ngIf="f.submitted &&  anagramForm.get('secondString').invalid && showError"
-                                    class="form-row text-danger">
-                                    Please Enter Second String
-                                </div>
-                                
+                            <div *ngIf="anagramForm.get('secondString').invalid && anagramForm.get('firstString').touched" class="form-row text-danger">
+                                Please Enter Second String
+                            </div>
+
                         </div>
                     </div>
 

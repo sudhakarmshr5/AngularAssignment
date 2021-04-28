@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-temperature',
@@ -11,15 +10,13 @@ import { ToastrService } from 'ngx-toastr';
 export class TemperatureComponent implements OnInit {
 
     tempForm: FormGroup;
-    showError: boolean;
     min: number;
     max: number;
     mean: number;
     mode: number;
     temperatureData: any;
 
-    constructor( private toastr: ToastrService,
-        private formBuilder: FormBuilder,
+    constructor(private formBuilder: FormBuilder,
         private router: Router) {
         this.initializeFormControl();
 
@@ -36,31 +33,29 @@ export class TemperatureComponent implements OnInit {
     }
 
     onSubmit() {
-        this.showError = true;
         const formValue = this.tempForm.value;
         this.insert(formValue.temperature);
-        this.showError = false;
         this.tempForm.reset();
     }
 
 
     insert(num: number): any {
-        if (num > 0 && num < 150) {
+        if (num > 1 && num < 150) {
             this.temperatureData.push(num);
             this.min = Math.min.apply(null, this.temperatureData);
             this.max = Math.max.apply(null, this.temperatureData);
-            this.mean = Number(this.meanTemperature().toFixed(2));
-            this.mode = this.calculateMode();
+            this.mean = Number(this.mean_Temperature().toFixed(2)); // casting to number as toFixed returns a string
+            this.mode = this.calculate_Mode();
             return this.temperatureData;
         }
         else {
-            this.toastr.error('Temperature should be integer');
+            return 'Temperature should not be less than 1 and greater than 150';
         }
     }
 
 
 
-    meanTemperature(): number {
+    mean_Temperature(): number {
         let totalSum = 0;
         this.temperatureData.forEach((element) => {
             totalSum += element;
@@ -69,28 +64,25 @@ export class TemperatureComponent implements OnInit {
     }
 
 
-    calculateMode(): number {
-        let mode = 0;
-        for (let i = 0; i < this.temperatureData.length; i++) {
-            for (let j = 0; j < i; j++) {
-                if (this.temperatureData[j] === this.temperatureData[i]) {
-                    mode = this.temperatureData[j];
-                }
-            }
-        }
-        return mode;
+    calculate_Mode(): number {
+        return this.temperatureData.reduce(function(counts,key){
+            var curCount = (counts[key+''] || 0) + 1;
+            counts[key+''] = curCount;
+            if (curCount > counts.max) { counts.max = curCount; counts.mode = key; }
+            return counts;
+          }, {max:0, mode: null}).mode
     }
 
-    getMin(): number {
+    get_Min(): number {
         return this.min;
     }
-    getMax(): number {
+    get_Max(): number {
         return this.max;
     }
-    getMean(): number {
+    get_Mean(): number {
         return this.mean;
     }
-    getMode(): number {
+    get_Mode(): number {
         return this.mode;
     }
 }

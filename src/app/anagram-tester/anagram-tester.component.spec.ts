@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed, async} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AnagramTesterComponent } from './anagram-tester.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 
 describe('AnagramTesterComponent', () => {
   let component: AnagramTesterComponent;
@@ -10,16 +9,12 @@ describe('AnagramTesterComponent', () => {
   let mockToastrService;
 
   beforeEach(async(() => {
-    mockToastrService = jasmine.createSpyObj('mockToastrService', ['success','error']);
-
     TestBed.configureTestingModule({
       declarations: [AnagramTesterComponent],
-      providers: [ToastrService],
       imports: [ReactiveFormsModule,RouterTestingModule]
     })
       .compileComponents();
       
-      TestBed.overrideProvider(ToastrService, { useValue: mockToastrService });
   }));
 
   beforeEach(() => {
@@ -54,10 +49,58 @@ describe('AnagramTesterComponent', () => {
     component.anagramForm.controls.secondString.setValue('recall');
     expect(component.anagramForm.valid).toBeTruthy();
   });
+
   it('should fail anagram check', () => {
     component.anagramForm.controls.firstString.setValue('arm');
     component.anagramForm.controls.secondString.setValue('elbow');
     expect(component.anagramForm.valid).toBeTruthy();
   });
   
+  it('should pass anagram check 2', () => {
+    component.anagramForm.controls.firstString.setValue('listen');
+    component.anagramForm.controls.secondString.setValue('silent');
+    expect(component.anagramForm.valid).toBeTruthy();
+  });
+  
+  it('should fail anagram check 2', () => {
+    component.anagramForm.controls.firstString.setValue('right');
+    component.anagramForm.controls.secondString.setValue('left');
+    expect(component.anagramForm.valid).toBeTruthy();
+  });
+
+  it('should pass anagram check 3', () => {
+    component.anagramForm.controls.firstString.setValue('abc');
+    component.anagramForm.controls.secondString.setValue('cab');
+    expect(component.anagramForm.valid).toBeTruthy();
+  });
+  
+  it('should fail anagram check 3', () => {
+    component.anagramForm.controls.firstString.setValue('cone');
+    component.anagramForm.controls.secondString.setValue('gone');
+    expect(component.anagramForm.valid).toBeTruthy();
+  });
+
+  it('should pass anagram check 4', () => {
+    component.anagramForm.controls.firstString.setValue('night');
+    component.anagramForm.controls.secondString.setValue('thing');
+    expect(component.anagramForm.valid).toBeTruthy();
+  });
+
+  it('should fail anagram check 4', () => {
+    component.anagramForm.controls.firstString.setValue('less');
+    component.anagramForm.controls.secondString.setValue('more');
+    expect(component.anagramForm.valid).toBeTruthy();
+  });
+  
+  it('should pass anagram check 5', () => {
+    component.anagramForm.controls.firstString.setValue('who');
+    component.anagramForm.controls.secondString.setValue('how');
+    expect(component.anagramForm.valid).toBeTruthy();
+  });
+
+  it('should fail anagram check 5', () => {
+    component.anagramForm.controls.firstString.setValue('get');
+    component.anagramForm.controls.secondString.setValue('tag');
+    expect(component.anagramForm.valid).toBeTruthy();
+  });
 });
