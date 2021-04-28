@@ -21,7 +21,7 @@ export class TemperatureComponent {
 
     initializeFormControl() {
         this.tempForm = this.formBuilder.group({
-            'temperature': [null, [Validators.required,Validators.min(1),Validators.max(150)]]
+            'temperature': [null, [Validators.required, Validators.min(1), Validators.max(150)]]
         });
     }
 
@@ -48,10 +48,9 @@ export class TemperatureComponent {
         if (this.temperatureData.length) {
             const total = this.temperatureData.reduce((acc, curr) => acc += curr);
             this.mean = total / this.temperatureData.length;
-          }
-          return this.mean;
+        }
+        return this.mean;
     }
-
 
     calculateMode(): number {
         return this.temperatureData.reduce(function(counts,key){

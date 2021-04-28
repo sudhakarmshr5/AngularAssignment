@@ -10,6 +10,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 export class AnagramTesterComponent {
 
   anagramForm: FormGroup;
+  result:boolean;
 
   constructor(private formBuilder: FormBuilder,private router: Router) {
     this.initializeFormControl();
@@ -30,10 +31,7 @@ export class AnagramTesterComponent {
 
 
   isAnagram() {
-    if (this.anagramForm.value.firstString.split('').sort().join('') === this.anagramForm.value.secondString.split('').sort().join(''))
-      return true
-    else
-      return false
+    this.result = this.anagramForm.value.firstString.split('').sort().join('') === this.anagramForm.value.secondString.split('').sort().join('');
   }
 
 }
