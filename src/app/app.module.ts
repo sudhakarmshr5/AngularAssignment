@@ -30,7 +30,6 @@ import { TemperatureComponent } from './temperature/temperature.component';
     ToastrModule.forRoot()
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

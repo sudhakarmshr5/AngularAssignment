@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { ToastrService } from 'ngx-toastr';
 import { UserComponent } from './user.component';
 
@@ -12,15 +12,11 @@ describe('UserComponent', () => {
 
   beforeEach(async(() => {
     mockToastrService = jasmine.createSpyObj('mockToastrService', ['success','error']);
-
     TestBed.configureTestingModule({
       declarations: [UserComponent],
       providers: [ToastrService],
-      imports: [ReactiveFormsModule,RouterTestingModule]
-
-    })
-      .compileComponents();
-
+      imports: [ReactiveFormsModule,RouterTestingModule,NgSelectModule]
+    }).compileComponents();
       TestBed.overrideProvider(ToastrService, { useValue: mockToastrService });
   }));
 
@@ -33,7 +29,6 @@ describe('UserComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
   it('should have a firstName input field ', () => {
     const firstName = component.userForm.controls.firstName;
     expect(firstName.valid).toBeFalsy();
@@ -50,7 +45,6 @@ describe('UserComponent', () => {
     expect(firstName.hasError('minlength')).toBeFalsy();
     expect(firstName.valid).toBeTruthy();
   });
-
   it('should be throw minlength error  after fname field has entered less input values', () => {
     const firstName = component.userForm.controls.firstName;
     firstName.setValue('Sudh');
@@ -59,9 +53,6 @@ describe('UserComponent', () => {
     expect(firstName.hasError('minlength')).toBeTruthy();
     expect(firstName.valid).toBeFalsy();
   });
-
-  
-
   it('should have a lastName input field ', () => {
     const lastName = component.userForm.controls.lastName;
     expect(lastName.valid).toBeFalsy();
@@ -78,7 +69,6 @@ describe('UserComponent', () => {
     expect(lastName.hasError('minlength')).toBeFalsy();
     expect(lastName.valid).toBeTruthy();
   });
-  
   it('should be throw minlength error  after lastName field has entered less input values', () => {
     const lastName = component.userForm.controls.lastName;
     lastName.setValue('Mish');
@@ -87,9 +77,6 @@ describe('UserComponent', () => {
     expect(lastName.hasError('minlength')).toBeTruthy();
     expect(lastName.valid).toBeFalsy();
   });
-
- 
-
   it('should have a phoneNumber input field ', () => {
     const phoneNumber = component.userForm.controls.phoneNumber;
     expect(phoneNumber.valid).toBeFalsy();
@@ -98,7 +85,6 @@ describe('UserComponent', () => {
     expect(phoneNumber.hasError('minLength')).toBeFalsy();
     expect(phoneNumber.pristine).toBeTruthy();
   });
-
   it('should throw error  after phoneNumber field has entered string input values', () => {
     const phoneNumber = component.userForm.controls.phoneNumber;
     phoneNumber.setValue('hdhfdjhf');
@@ -106,7 +92,6 @@ describe('UserComponent', () => {
     expect(phoneNumber.hasError('pattern')).toBeTruthy();
     expect(phoneNumber.valid).toBeFalsy();
   });
-
   it('should throw error  after phoneNumber field has entered less than 10 input values', () => {
     const phoneNumber = component.userForm.controls.phoneNumber;
     phoneNumber.setValue(1234);
@@ -114,7 +99,6 @@ describe('UserComponent', () => {
     expect(phoneNumber.hasError('pattern')).toBeTruthy();
     expect(phoneNumber.valid).toBeFalsy();
   });
-
   it('should have a Country select field ', () => {
     const country = component.userForm.controls.country;
     expect(country.valid).toBeFalsy();
@@ -127,5 +111,4 @@ describe('UserComponent', () => {
     expect(country.hasError('required')).toBeFalsy();
     expect(country.valid).toBeTruthy();
   });
-  
 });

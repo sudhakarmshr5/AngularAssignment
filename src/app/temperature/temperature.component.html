@@ -1,4 +1,3 @@
-
 <div class="x_content">
     <form class="form-horizontal form-label-left" [formGroup]="tempForm" (ngSubmit)="onSubmit()" #f="ngForm">
         <div class="panel panel-info">
@@ -11,33 +10,38 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-
-
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Temperature</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <input type="text" id="inputFirstString" class="form-control input-sm"
                                 formControlName="temperature" placeholder="Temperature">
-                            <div *ngIf="f.submitted &&  tempForm.get('temperature').invalid && showError"
-                                class="form-row text-danger">
+                            <div *ngIf="f.submitted && tempForm.get('temperature').invalid  || tempForm.get('temperature').touched && tempForm.get('temperature').errors?.required" class="form-row text-danger">
                                 Please Enter a Number
                             </div>
-
+                            <div *ngIf="tempForm.get('temperature').errors?.min && tempForm.get('temperature').touched" class="form-row text-danger">
+                                Entered Number must be greater than 0
+                            </div>
+                            <div *ngIf="tempForm.get('temperature').errors?.min && tempForm.get('temperature').touched" class="form-row text-danger">
+                                Entered Number must be less than 150
+                            </div>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
-
         <div class="panel-footer-div">
-            <button type="submit" class="btn btn-primary pull-right">
+            <button type="submit" class="btn btn-primary pull-right" [disabled]="tempForm.invalid">
                 Calculate
             </button>
-
         </div>
-
     </form>
+    <div class="col-sm-12">
+    <pre>{{temperatureData.length ? 'Values: '+ temperatureData : ''  }}</pre>
+    <pre>
+            {{min ? 'Min = '+ min: '' }}
+            {{max ? 'Max = '+ max: '' }}
+            {{mean ? 'Mean = '+ mean.toFixed(2): '' }}
+            {{mode ? 'Mode = '+ mode: '' }}
+        </pre>
+    </div>
 </div>

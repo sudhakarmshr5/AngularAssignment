@@ -1,4 +1,3 @@
-
 <div class="x_content">
   <form class="form-horizontal form-label-left" [formGroup]="userForm" (ngSubmit)="onSubmit()" #f="ngForm">
     <div class="panel panel-info">
@@ -12,20 +11,21 @@
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
 
-          
+
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
             <div class="col-md-9 col-sm-9 col-xs-12">
               <input type="text" id="inputFirstName" class="form-control input-sm" formControlName="firstName"
                 placeholder="First Name">
-                
-              <div *ngIf="f.submitted && userForm.get('firstName').invalid && userForm.get('firstName').errors.required && showError" class="form-row text-danger">
+
+              <div *ngIf="f.submitted && userForm.get('firstName').invalid && userForm.get('firstName').errors?.required && showError"
+                class="form-row text-danger">
                 Please Enter First Name
               </div>
-              <div *ngIf="f.submitted &&  userForm.get('firstName').errors.minLength &&  userForm.get('lastName').touched && showError" class="form-row text-danger">
-                Please Enter minimum 5 characters 
+              <div *ngIf="f.submitted &&  userForm.get('firstName').errors?.minlength &&  userForm.get('lastName').touched && showError "
+                class="form-row text-danger">
+                Please Enter Minimum 5 Characters
               </div>
-              
             </div>
           </div>
 
@@ -34,11 +34,13 @@
             <div class="col-md-9 col-sm-9 col-xs-12">
               <input type="text" id="inputLastName" class="form-control input-sm" formControlName="lastName"
                 placeholder="Last Name">
-              <div *ngIf="f.submitted &&  userForm.get('lastName').invalid && userForm.get('lastName').errors.required && showError " class="form-row text-danger">
+              <div *ngIf="f.submitted &&  userForm.get('lastName').invalid && userForm.get('lastName').errors?.required && showError "
+                class="form-row text-danger">
                 Please Enter Last Name
               </div>
-              <div *ngIf="f.submitted &&  userForm.get('lastName').errors.minLength && userForm.get('lastName').touched && showError" class="form-row text-danger">
-                Please Enter minimum 5 characters 
+              <div *ngIf="f.submitted &&  userForm.get('lastName').errors?.minlength &&  userForm.get('lastName').touched && showError "
+                class="form-row text-danger">
+                Please Enter Minimum 5 Characters
               </div>
             </div>
           </div>
@@ -57,8 +59,8 @@
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Phone Number</label>
             <div class="col-md-9 col-sm-9 col-xs-12">
-              <input type="text" id="inputPhoneNumber" class="form-control input-sm"
-                formControlName="phoneNumber" placeholder="Phone Number">
+              <input type="text" id="inputPhoneNumber" class="form-control input-sm" formControlName="phoneNumber"
+                placeholder="Phone Number">
               <div *ngIf="f.submitted &&  userForm.get('phoneNumber').invalid && showError"
                 class="form-row text-danger">
                 Please Enter Valid Phone Number
@@ -86,11 +88,10 @@
     </div>
 
     <div class="panel-footer-div">
-      <button type="submit" class="btn btn-primary pull-right" [disabled]="loading">
+      <button type="submit" class="btn btn-primary pull-right" [disabled]="userForm.invalid">
         Save
       </button>
 
     </div>
-
   </form>
 </div>
