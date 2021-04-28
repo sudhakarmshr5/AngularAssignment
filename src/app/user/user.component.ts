@@ -18,11 +18,8 @@ export class UserComponent implements OnInit {
   countryList: any;
 
 
-  constructor(private toastr: ToastrService,
-    private formBuilder: FormBuilder,
-    private router: Router) {
+  constructor(private toastr: ToastrService,private formBuilder: FormBuilder,private router: Router) {
     this.initializeFormControl();
-
   }
 
   ngOnInit() {

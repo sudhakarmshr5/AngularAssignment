@@ -7,8 +7,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
     templateUrl: './temperature.component.html',
 })
 
-export class TemperatureComponent implements OnInit {
-
+export class TemperatureComponent {
     tempForm: FormGroup;
     min: number;
     max: number;
@@ -16,14 +15,8 @@ export class TemperatureComponent implements OnInit {
     mode: number;
     temperatureData = [];
 
-    constructor(private formBuilder: FormBuilder,
-        private router: Router) {
+    constructor(private formBuilder: FormBuilder,private router: Router) {
         this.initializeFormControl();
-
-    }
-
-    ngOnInit() {
-
     }
 
     initializeFormControl() {
@@ -38,7 +31,6 @@ export class TemperatureComponent implements OnInit {
         this.tempForm.reset();
     }
 
-
     insert(num: number): any {
         if (num > 0 && num < 150) {
             this.temperatureData.push(num);
@@ -52,9 +44,6 @@ export class TemperatureComponent implements OnInit {
             return 'Temperature should not be less than 1 and greater than 150';
         }
     }
-
-
-
     mean_Temperature(): Number {
         if (this.temperatureData.length) {
             const total = this.temperatureData.reduce((acc, curr) => acc += curr);
