@@ -14,7 +14,7 @@ export class TemperatureComponent implements OnInit {
     max: number;
     mean: number;
     mode: number;
-    temperatureData: any;
+    temperatureData = [];
 
     constructor(private formBuilder: FormBuilder,
         private router: Router) {
@@ -28,7 +28,7 @@ export class TemperatureComponent implements OnInit {
 
     initializeFormControl() {
         this.tempForm = this.formBuilder.group({
-            'temperature': [null, [Validators.required]]
+            'temperature': [null, [Validators.required,Validators.min(1),Validators.max(150)]]
         });
     }
 
@@ -40,12 +40,12 @@ export class TemperatureComponent implements OnInit {
 
 
     insert(num: number): any {
-        if (num > 1 && num < 150) {
+        if (num > 0 && num < 150) {
             this.temperatureData.push(num);
             this.min = Math.min.apply(null, this.temperatureData);
             this.max = Math.max.apply(null, this.temperatureData);
             this.mean = Number(this.mean_Temperature().toFixed(2)); // casting to number as toFixed returns a string
-            this.mode = this.calculate_Mode();
+            this.mode = this.calculateMode();
             return this.temperatureData;
         }
         else {
@@ -55,16 +55,16 @@ export class TemperatureComponent implements OnInit {
 
 
 
-    mean_Temperature(): number {
-        let totalSum = 0;
-        this.temperatureData.forEach((element) => {
-            totalSum += element;
-        });
-        return totalSum / this.temperatureData.length;
+    mean_Temperature(): Number {
+        if (this.temperatureData.length) {
+            const total = this.temperatureData.reduce((acc, curr) => acc += curr);
+            this.mean = total / this.temperatureData.length;
+          }
+          return this.mean;
     }
 
 
-    calculate_Mode(): number {
+    calculateMode(): number {
         return this.temperatureData.reduce(function(counts,key){
             var curCount = (counts[key+''] || 0) + 1;
             counts[key+''] = curCount;
