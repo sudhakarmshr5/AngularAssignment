@@ -33,5 +33,4 @@ export class AnagramTesterComponent {
   is_Anagram() {
     this.result = this.anagramForm.value.firstString.split('').sort().join('') === this.anagramForm.value.secondString.split('').sort().join('');
   }
-
 }
