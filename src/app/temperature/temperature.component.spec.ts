@@ -55,6 +55,7 @@ describe('TemperatureComponent', () => {
   it('calculateMode should return mode', () => {
     component.tempForm.controls.temperature.setValue(12);
     component.onSubmit();
+    component.temperatureData = [12,4,12,3]
     expect(component.mode).toEqual(12);
   });
   it('calculateMean should return mode', () => {
@@ -63,13 +64,15 @@ describe('TemperatureComponent', () => {
     expect(component.mean).toEqual(12.00);
   });
   it('calculateMin should return mode', () => {
-    component.tempForm.controls.temperature.setValue(12);
+    component.tempForm.controls.temperature.setValue(3);
     component.onSubmit();
-    expect(component.min).toEqual(12);
+    component.temperatureData = [12,4,12,3]
+    expect(component.min).toEqual(3);
   });
   it('calculateMax should return mode', () => {
     component.tempForm.controls.temperature.setValue(12);
     component.onSubmit();
+    component.temperatureData = [12,4,12,3]
     expect(component.max).toEqual(12);
   });
 });
