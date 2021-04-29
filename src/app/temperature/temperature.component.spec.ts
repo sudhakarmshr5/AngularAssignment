@@ -45,4 +45,31 @@ describe('TemperatureComponent', () => {
     expect(insert.hasError('min')).toBeTruthy();
     expect(insert.pristine).toBeTruthy();
   });
+  it('should call insert on form submit',()=>{
+    spyOn(component,'insert').and.callThrough();
+    component.tempForm.controls.temperature.setValue(12);
+    component.onSubmit();
+    expect(component.insert).toHaveBeenCalled();
+  });
+
+  it('calculateMode should return mode', () => {
+    component.tempForm.controls.temperature.setValue(12);
+    component.onSubmit();
+    expect(component.mode).toEqual(12);
+  });
+  it('calculateMean should return mode', () => {
+    component.tempForm.controls.temperature.setValue(12);
+    component.onSubmit();
+    expect(component.mean).toEqual(12.00);
+  });
+  it('calculateMin should return mode', () => {
+    component.tempForm.controls.temperature.setValue(12);
+    component.onSubmit();
+    expect(component.min).toEqual(12);
+  });
+  it('calculateMax should return mode', () => {
+    component.tempForm.controls.temperature.setValue(12);
+    component.onSubmit();
+    expect(component.max).toEqual(12);
+  });
 });

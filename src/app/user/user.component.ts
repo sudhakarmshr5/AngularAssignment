@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.countryList = [{ id: 1, name: 'India' }, { id: 2, name: 'USA' }, { id: 3, name: 'UK' }];
+    this.countryList = [{ id: 1, name: 'India' }, { id: 2, name: 'USA' }, { id: 3, name: 'UK' }]
   }
 
 
@@ -67,19 +67,6 @@ export class UserComponent implements OnInit {
     this.initializeFormControl();
   }
 
-  initializeUserModel() {
-    let userModel;
-    userModel = Object.assign(userModel, {
-      email: null,
-      firstName: null,
-      userName: null,
-      lastName: null,
-      personalNumber: null,
-      country: null
-    });
-    this.userModel = userModel;
-  }
-
   onSubmit() {
     this.showError = true;
     if (this.userForm.valid) {
@@ -96,4 +83,3 @@ export class UserComponent implements OnInit {
     this.clearUser();
   }
 }
-
