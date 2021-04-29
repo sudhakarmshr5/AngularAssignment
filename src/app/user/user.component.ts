@@ -67,19 +67,6 @@ export class UserComponent implements OnInit {
     this.initializeFormControl();
   }
 
-  initializeUserModel() {
-    let userModel;
-    userModel = Object.assign(userModel, {
-      email: null,
-      firstName: null,
-      userName: null,
-      lastName: null,
-      personalNumber: null,
-      country: null
-    });
-    this.userModel = userModel;
-  }
-
   onSubmit() {
     this.showError = true;
     if (this.userForm.valid) {
